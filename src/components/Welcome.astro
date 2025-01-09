@@ -1,6 +1,8 @@
 ---
 import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import background from '../assets/svg/background.svg';
+import VideoCards from './VideoCards.astro';
+import PlayButton from "../assets/svg/play.svg";
 ---
 
 <div id="container">
@@ -24,6 +26,19 @@ import background from '../assets/background.svg';
 					>
 				</a>
 			</section>
+		</section>
+		<section >
+			<VideoCards server:defer>
+				<div slot="fallback" class="flex gap-4 flex-wrap">
+				  {
+					Array.from({ length: 3 }).map((_, i) => (
+					  <div class="border-2 p-4 rounded w-60 h-40 grid place-items-center animate-pulse">
+						<PlayButton />
+					  </div>
+					))
+				  }
+				</div>
+			  </VideoCards>
 		</section>
 	</main>
 

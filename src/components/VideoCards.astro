@@ -1,0 +1,46 @@
+---
+import { xmlToJsonUtil } from "xml-to-json-util";
+const req = await fetch(
+  "https://www.youtube.com/feeds/videos.xml?channel_id=UCwJjFIDpdNN0Dk3vSNZby1g"
+);
+
+const xml = await req.text();
+const parsedXml = xmlToJsonUtil(xml);
+
+// Ordenar os vídeos pelo campo "published" (do mais recente para o mais antigo)
+const sortedVideos = parsedXml.feed.entry.sort((a: any, b: any) => {
+  const dateA = new Date(a.published).getTime();
+  const dateB = new Date(b.published).getTime();
+  return dateB - dateA; // Decrescente
+});
+
+// Selecionar os 3 primeiros vídeos após a ordenação
+const finalVideos = sortedVideos.slice(0, 3).map((video: any) => {
+  return {
+    title: video.title,
+    id: video["yt:videoId"],
+    published: video.published,
+  };
+});
+
+
+import PlayButton from "../assets/svg/play.svg";
+---
+
+<div class="flex gap-4 flex-wrap">
+  {
+    finalVideos.map(({ title, id }) => (
+      <div class="border-2 p-2 rounded w-60 h-40 grid place-items-center">
+        <a href={`https://www.youtube.com/watch?v=${id}`}>
+          <img
+            src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+            alt={title}
+            width={300}
+            height={165}
+          />
+        </a>
+        <PlayButton class="absolute text-white" />
+      </div>
+    ))
+  }
+</div>
