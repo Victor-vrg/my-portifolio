@@ -1,84 +1,55 @@
 ---
-import { Image } from 'astro:assets';
-import emailImage from '../assets/svg/icons/email.svg';
-import githubImage from '../assets/svg/icons/github.svg';
-import instagramImage from '../assets/svg/icons/instagram.svg';
-import linkedInImage from '../assets/svg/icons/linkedin.svg';
-import tiktokImage from '../assets/svg/icons/tiktok.svg';
+import { Image } from "astro:assets";
+import emailImage from "../assets/svg/icons/email.svg";
+import githubImage from "../assets/svg/icons/github.svg";
+import instagramImage from "../assets/svg/icons/instagram.svg";
+import linkedInImage from "../assets/svg/icons/linkedin.svg";
+import tiktokImage from "../assets/svg/icons/tiktok.svg";
+import socialsData from "../data/social.json";
 
-
-const teste = emailImage
 
 enum Type {
-  linkedIn = 'LinkedIn',
-  gitHub = 'GitHub',
-  twitter = 'Twitter',
-  instagram = 'Instagram',
-  email = 'Email',
-  tiktok = 'TikTok',
+  linkedIn = "LinkedIn",
+  gitHub = "GitHub",
+  twitter = "Twitter",
+  instagram = "Instagram",
+  email = "Email",
+  tiktok = "TikTok",
 }
 
-const socials = [
-  {
-    name: Type.twitter,
-    url: 'https://twitter.com/xxx',
-    icon: teste, 
-    color: 'bg-gray-800',
-  },
-  {
-    name: Type.gitHub,
-    url: 'https://github.com/xxx',
-    icon: githubImage,
-    color: 'bg-cyan-500',
-  },
-  {
-    name: Type.instagram,
-    url: 'https://www.instagram.com/xxx',
-    icon: instagramImage,
-    color: 'bg-yellow-400',
-  },
-  {
-    name: Type.email,
-    url: 'mailto:xxx@email.com',
-    icon: teste,
-    color: 'bg-lime-400',
-  },
-  {
-    name: Type.linkedIn,
-    url: 'https://www.linkedin.com/in/xxx',
-    icon: linkedInImage,
-    color: 'bg-sky-700',
-  },
-  {
-    name: Type.tiktok,
-    url: 'https://www.tiktok.com/xxx',
-    icon: tiktokImage,
-    color: 'bg-pink-400',
-  },
-];
+const iconsMap = {
+  emailImage,
+  githubImage,
+  instagramImage,
+  linkedInImage,
+  tiktokImage,
+};
+const fallbackIcon = emailImage; 
 
-const getColor = (type: Type) => socials.find((social) => social.name === type)?.color;
+const socials = socialsData.map((social) => ({
+  ...social,
+  icon: iconsMap[social.icon] || fallbackIcon,
+}));
+
+const getColor = (type: Type) =>
+  socials.find((social) => social.name === type)?.color;
 const getClass = (type: Type) =>
   `scale-100 rounded-full border-2 border-gray-950 ${getColor(
-    type,
+    type
   )} transition duration-300 hover:scale-110 animate-zoom-in`;
-
 ---
 
 <div class="grid grid-cols-3 gap-3 duration-500 md:grid-flow-col md:gap-2">
   {
     socials.map((s) => (
       <a
-	  
         aria-label={s.name}
         class={getClass(s.name)}
         href={s.url}
         target="_blank"
         rel="nofollow noopener"
       >
-		
-		<Image class="size-14 p-3 md:size-16" src={s.icon} alt={s.name} />
-
+        <Image class="size-14 p-3 md:size-16" src={s.icon} alt={s.name} />
       </a>
     ))
   }
