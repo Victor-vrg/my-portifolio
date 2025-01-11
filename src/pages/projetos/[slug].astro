@@ -6,6 +6,7 @@ import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
 import Pill from '../../components/Pill.astro';
 import { render } from 'astro:content';
+import '../../styles/markdown.css';
 
 interface Props {
   entry: CollectionEntry<'projetos'>;
@@ -28,23 +29,25 @@ const { Content } = await render(entry);
     <div class="stack gap-15">
       <header>
         <div class="wrapper stack gap-2">
-          <a class="back-link" href="/projetos/"><Icon icon="arrow-left" /> projetos</a>
-          <Hero title={entry.data.title} align="start">
+          <a class="back-link" href="/projetos/"> <Icon icon="arrow-left" /> projetos</a>
+          <Hero title={entry.data.title} align="center">
             <div class="details">
-              <div class="tags">
+              <div class="flex gap-2 tags pb-4 justify-center">
                 {entry.data.tags.map((tag) => <Pill>{tag}</Pill>)}
               </div>
-              <p class="description">{entry.data.description}</p>
+              <div class="flex flex-row columns-2 items-center">
+              <p class="description ">{entry.data.description}</p>
+              {entry.data.thumbnail && (
+                <img src={entry.data.thumbnail} alt={entry.data.title} width="600" height="300" />
+              )}
+              </div>
             </div>
           </Hero>
         </div>
       </header>
       <main class="wrapper">
         <div class="stack gap-10 content">
-          {entry.data.thumbnail && (
-            <img src={entry.data.thumbnail} alt={entry.data.title} />
-          )}
-          <div class="content">
+          <div class="content markdown-content">
             <Content />
           </div>
         </div>
@@ -53,3 +56,4 @@ const { Content } = await render(entry);
    
   </div>
 </BaseLayout>
+

@@ -4,6 +4,8 @@ import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
 import SkillCard from "../components/SkillCard.astro";
+import AboutCartoon from "../assets/img/about-cartoon-style.jpg";
+import { Image } from "astro:assets";
 ---
 
 <Layout title="Sobre | Victor Resende" description="Desenvolvedor Full Stack focado em performance e experiências excepcionais">
@@ -14,11 +16,11 @@ import SkillCard from "../components/SkillCard.astro";
 				tagline="Transformando linhas de código em experiências extraordinárias, um projeto por vez."
 			>
 			<div class="flex justify-center">
-			<img
+			<Image
 			width="650"
 			height="500"
 			loading="lazy"
-			src="/src/assets/img//about-cartoon-style.jpg"
+			src={AboutCartoon}
 			alt="many monitors with a monitor monitor, in the style of graphic novel inspired illustrations, detailed world-building, warm ton..."
 		/>
 	</div>

@@ -12,7 +12,8 @@ import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import VideoCards from '../components/VideoCards.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
-
+import MyProfileImage from '../assets/img/1735816945176.jpg'
+import { Image } from 'astro:assets';
 
 // Page section components
 
@@ -36,11 +37,11 @@ const projects = await getCollection('projetos');
 					</div>
 				</Hero>
 
-				<img
+				<Image
 					alt="My Profile Image"
 					width="480"
 					height="620"
-				    src="/src/assets/img/1735816945176.jpg"
+				    src={MyProfileImage}
 				/>
 			</header>
 
