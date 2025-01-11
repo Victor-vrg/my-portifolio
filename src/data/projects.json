@@ -1,0 +1,55 @@
+{
+    "projects": [
+      {
+        "id": "clean-arch-api",
+        "title": "Clean Architecture API",
+        "slug": "clean-architecture-api",
+        "thumbnail": "/src/assets/img/clean-arch.webp",
+        "shortDescription": "API RESTful construída com princípios SOLID e Clean Architecture",
+        "tags": ["Node.js", "TypeScript", "PostgreSQL", "Docker"],
+        "featured": true,
+        "liveUrl": "https://api.exemplo.com",
+        "githubUrl": "https://github.com/seu-usuario/clean-arch-api",
+        "year": 2024,
+        "stats": {
+          "testCoverage": "98%",
+          "performance": "99/100",
+          "maintainability": "A+"
+        }
+      },
+      {
+        "id": "performance-dashboard",
+        "title": "Performance Analytics Dashboard",
+        "slug": "performance-dashboard",
+        "thumbnail": "/assets/projects/dashboard.webp",
+        "shortDescription": "Dashboard em tempo real com métricas de performance e análises avançadas",
+        "tags": ["React", "Next.js", "WebSocket", "Tailwind"],
+        "featured": true,
+        "liveUrl": "https://dashboard.exemplo.com",
+        "githubUrl": "https://github.com/seu-usuario/perf-dashboard",
+        "year": 2023,
+        "stats": {
+          "lighthouse": "100/100",
+          "fcp": "0.8s",
+          "tti": "1.2s"
+        }
+      },
+      {
+        "id": "astro-portfolio",
+        "title": "Portfólio Astro",
+        "slug": "astro-portfolio",
+        "thumbnail": "/assets/projects/portfolio.webp",
+        "shortDescription": "Site pessoal construído com Astro focando em performance máxima",
+        "tags": ["Astro", "TypeScript", "Tailwind"],
+        "featured": true,
+        "liveUrl": "https://seu-site.com",
+        "githubUrl": "https://github.com/seu-usuario/portfolio",
+        "year": 2024,
+        "stats": {
+          "lighthouse": "100/100",
+          "loadTime": "0.5s",
+          "size": "< 50KB"
+        }
+      }
+    ]
+  }

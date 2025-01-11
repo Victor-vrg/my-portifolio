@@ -1,0 +1,190 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+import Pill from "../components/Pill.astro";
+import SkillCard from "../components/SkillCard.astro";
+---
+
+<Layout title="Sobre | Victor Resende" description="Desenvolvedor Full Stack focado em performance e experiências excepcionais">
+	<div class="stack gap-20">
+		<main class="wrapper about ">
+			<Hero
+				title="Sobre mim"
+				tagline="Transformando linhas de código em experiências extraordinárias, um projeto por vez."
+			>
+			<div class="flex justify-center">
+			<img
+			width="650"
+			height="500"
+			loading="lazy"
+			src="/src/assets/img//about-cartoon-style.jpg"
+			alt="many monitors with a monitor monitor, in the style of graphic novel inspired illustrations, detailed world-building, warm ton..."
+		/>
+	</div>
+	<a class="text-sm">“Designed by Freepik”</a>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Minha História</h2>
+				<div class="content">
+					<p class="pb-1">
+						Minha jornada no desenvolvimento começou com uma curiosidade insaciável por entender como as coisas funcionam. 
+						Desde então, venho moldando minha carreira com foco em performance e simplicidade, sempre buscando o equilíbrio 
+						perfeito entre tecnologia de ponta e soluções práticas.
+					</p>
+					<p class="pb-1">
+						Como desenvolvedor full stack, me especializei em criar aplicações que não apenas funcionam, mas impressionam. 
+						Minha abordagem é baseada em três pilares fundamentais: performance excepcional, código limpo e experiência 
+						do usuário memorável. Este próprio site, construído com <a href="https://astro.build/">Astro</a>, é um 
+						exemplo prático dessa filosofia.
+					</p>
+					<p class="pb-1">
+						Além do código, dedico parte do meu tempo compartilhando conhecimento através do meu canal no YouTube, 
+						onde transformo conceitos complexos em conteúdo acessível e prático. Acredito que o verdadeiro 
+						conhecimento só se multiplica quando é compartilhado.
+					</p>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">Formação</h2>
+				<div class="content">
+					<p>
+						Graduado em Análise e Desenvolvimento de Sistemas, com especializações focadas em desenvolvimento web e arquitetura de software. 
+						Minha formação acadêmica serve como base sólida para minha constante evolução autodidata na tecnologia.
+					</p>
+					<div class="roles flex gap-2 py-4">
+						<Pill><Icon icon="code" size="1.33em" /> Full Stack Developer</Pill>
+						<Pill><Icon icon="microphone-stage" size="1.33em" /> Tech Content Creator</Pill>
+						<Pill><Icon icon="strategy" size="1.33em" /> Solution Architect</Pill>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">Habilidades Técnicas</h2>
+				<div class="content">
+					<div class="skills-grid">
+						<SkillCard
+							category="Frontend"
+							skills={["React", "Next.js", "Astro", "TypeScript", "Tailwind CSS"]}
+							icon="browser"
+						/>
+						<SkillCard
+							category="Backend"
+							skills={["Node.js", "NestJS", "Express", "PostgreSQL", "MongoDB"]}
+							icon="server"
+						/>
+						<SkillCard
+							category="Outros"
+							skills={["Docker", "OutSystems ODC", "AWS", "Performance Optimization"]}
+							icon="rocket"
+						/>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h2 class="section-title">Filosofia de Trabalho</h2>
+				<div class="content">
+					<p>
+						Acredito que o melhor código é aquele que resolve problemas reais de forma eficiente. 
+						Minha abordagem sempre prioriza:
+					</p>
+					<ul class="philosophy-list">
+						<li>Performance e otimização em cada linha de código</li>
+						<li>Arquiteturas simples e escaláveis</li>
+						<li>Experiências de usuário excepcionais</li>
+						<li>Soluções sustentáveis e de baixo custo</li>
+					</ul>
+				</div>
+			</section>
+		</main>
+	</div>
+</Layout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+		margin-top: 1rem;
+	}
+
+	.philosophy-list {
+		list-style: none;
+		padding: 0;
+		margin-top: 1rem;
+	}
+
+	.philosophy-list li {
+		padding: 0.5rem 0;
+		padding-left: 1.5rem;
+		position: relative;
+	}
+
+	.philosophy-list li::before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: var(--accent-regular);
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column: 1 / 4;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

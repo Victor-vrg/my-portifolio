@@ -1,0 +1,65 @@
+---
+interface Props {
+	category: string;
+	skills: string[];
+	icon: string;
+}
+
+const { category, skills, icon } = Astro.props;
+import Icon from './Icon.astro';
+---
+
+<div class="skill-card">
+	<div class="card-header">
+		<Icon icon={icon} size="1.33em" />
+		<h3>{category}</h3>
+	</div>
+	<ul class="skills-list">
+		{skills.map((skill) => <li>{skill}</li>)}
+	</ul>
+</div>
+
+<style>
+	.skill-card {
+		padding: 1.5rem;
+		background-color: var(--gray-999);
+		border-radius: 0.75rem;
+		box-shadow: var(--shadow-sm);
+		transition: box-shadow var(--theme-transition);
+	}
+
+	.skill-card:hover {
+		box-shadow: var(--shadow-md);
+	}
+
+	.card-header {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--accent-regular);
+		margin-bottom: 1rem;
+	}
+
+	h3 {
+		font-size: var(--text-lg);
+		font-weight: 600;
+		color: var(--gray-100);
+	}
+
+	.skills-list {
+		list-style: none;
+		padding: 0;
+		color: var(--gray-200);
+	}
+
+	.skills-list li {
+		padding: 0.25rem 0;
+		font-size: var(--text-md);
+	}
+
+	.skills-list li::before {
+		content: "•";
+		color: var(--accent-regular);
+		margin-right: 0.5rem;
+	}
+</style>

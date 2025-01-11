@@ -11,14 +11,13 @@ import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import VideoCards from '../components/VideoCards.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
 
 
 // Page section components
 
 
-// Content Fetching: List four most recent work projects
-
-
+const projects = await getCollection('projetos');
 ---
 
 <Layout>
@@ -27,7 +26,7 @@ import VideoCards from '../components/VideoCards.astro';
 			<header class="hero">
 				<Hero
 					title="Hello, my name is Victor Resende"
-					tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+					tagline="I am a Fullstack Developer."
 					align="start"
 				>
 					<div class="roles">
@@ -55,7 +54,15 @@ import VideoCards from '../components/VideoCards.astro';
 				</header>
 
 				<div class="gallery">
-					
+					<Grid variant="offset">
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
 				</div>
 
 				<div class="cta">
