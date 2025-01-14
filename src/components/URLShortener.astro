@@ -111,7 +111,7 @@ const { baseApiUrl } = Astro.props;
             onclick="copyToClipboard()"
             class="bg-green-600 text-white p-2 rounded hover:bg-green-700 transition"
           >
-            <Icon icon="copy" />
+            <Icon icon="copy-paste" />
           </button>
         </div>
         <p class="mt-2 text-sm text-green-600">
@@ -193,10 +193,12 @@ const { baseApiUrl } = Astro.props;
     }, 2000);
   };
 
+
   // Função para encurtar URL
   async function shortenUrl(url, customUrl = '') {
+    console.log(url)
     try {
-      const response = await fetch(`${baseApiUrl}/api/urls`, {
+      const response = await fetch(`${baseApiUrl}/api/links`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -238,7 +240,7 @@ const { baseApiUrl } = Astro.props;
         const viewNumber = formId.replace(/[^0-9]/g, '') || '1';
         const urlInput = document.getElementById(`urlInput${viewNumber}`);
         const customUrlInput = document.getElementById('customUrl');
-        
+    
         if (urlInput) {
           const url = urlInput.value;
           const customUrl = customUrlInput ? customUrlInput.value : '';
