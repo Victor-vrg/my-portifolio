@@ -30,24 +30,27 @@ const { Content } = await render(entry);
     <div class="stack gap-15">
       <header>
         <div class="wrapper stack gap-2">
-          <div class="breadcrumbs flex items-center">
-            <a class="back-link" href="/projetos/"> <Icon icon="arrow-left" /></a>
-          <a class="back-link pl-4 text-xl" href="/projetos/"> Projetos</a>
+          <div class="breadcrumbs flex items-center w-max px-2 py-1 rounded-lg bg-lime-300">
+            <a class="back-link text-black" href="/projetos/"> <Icon icon="arrow-left" /></a>
+          <a class="back-link pl-4 text-xl text-black font-bold" href="/projetos/"> Projetos</a>
           
         </div>
           <Hero title={entry.data.title} align="center">
             <div class="shrink-0 bg-border h-[1px] w-full my-4 bg-slate-500"></div>
             <div class="details">
-              <div class="flex gap-2 tags pb-4 justify-center">
+              <div class="flex gap-2 tags pb-7 justify-center">
                 {entry.data.tags.map((tag) => <Pill>{tag}</Pill>)}
               </div>
               <div class="flex flex-row columns-2 items-center">
-              <p class="description ">{entry.data.description}</p>
+              <p class="description mr-4 ">{entry.data.description}</p>
               {entry.data.thumbnail && (
                 <img src={entry.data.thumbnail} alt={entry.data.title} width="600" height="300" />
               )}
               </div>
-              <a href={entry.data.liveUrl} class="liveUrl size-1">Clique aqui para ver!</a>
+              <div class="py-4 text-left ">
+              <a href={entry.data.liveUrl} class="liveUrl size-1 text-green-500">Clique aqui para ver solução</a>
+            </div>
+            <div class="shrink-0 bg-border h-[1px] w-full my-4 bg-slate-500"></div>
             </div>
           </Hero>
         </div>

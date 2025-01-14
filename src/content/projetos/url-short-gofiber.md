@@ -11,9 +11,15 @@ slug: url-short-gofiber
 liveUrl:  https://victor-vrg-portifolio.netlify.app/encurtador/
 ---
 
-# 🔗 URL Shortener API
+#  🔗 URL Shortener API - Vantagens de Utilizar um Encurtador de URL
 
-Uma POC (Prova de conceito) de encurtamento de URLs robusto e escalável construído com Go, utilizando Fiber framework e PostgreSQL.
+1. **Praticidade**: URLs encurtadas são mais fáceis de compartilhar em redes sociais, mensagens e e-mails, economizando espaço e evitando que links longos se quebrem.
+2. **Estética**: Links curtos são visualmente mais agradáveis e profissionais, melhorando a aparência de comunicações e materiais promocionais.
+3. **Rastreamento**: Muitos encurtadores oferecem ferramentas de análise, permitindo monitorar cliques, origem do tráfego e outras métricas úteis.
+4. **Gestão**: É possível personalizar URLs encurtadas, tornando-as mais memoráveis e alinhadas com a marca ou campanha.
+
+Esses benefícios tornam os encurtadores de URL uma ferramenta valiosa para simplificar e otimizar o compartilhamento de links.
+
 
 ## 🚀 Funcionalidades
 

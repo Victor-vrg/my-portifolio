@@ -1,8 +1,13 @@
+.markdown-content{
+  border: dotted;
+  padding: 2rem;
+}
 /* Estilos base para o conteúdo Markdown */
 .content {
     max-width: 85ch;
     margin: 0 auto;
     line-height: 1.6;
+    overflow: auto;
   }
   
   /* Espaçamento e estilização dos títulos */
