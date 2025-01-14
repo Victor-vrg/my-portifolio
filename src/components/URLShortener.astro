@@ -1,0 +1,227 @@
+
+---
+
+import Icon from "../components/Icon.astro";
+
+interface Props {
+  baseApiUrl: string;
+}
+
+const { baseApiUrl } = Astro.props;
+---
+
+<div class="url-shortener-container">
+  <!-- Container principal -->
+  <div class="content-container">
+    <div id="viewContainer" class="view-container">
+      <!-- View 1: Formulário Simples -->
+      <div class="view" data-view="1">
+        <h2 class="text-2xl font-bold mb-4">Encurtar URL</h2>
+        <form id="simpleForm" class="space-y-4">
+          <input 
+            type="url" 
+            id="urlInput1" 
+            placeholder="Cole sua URL aqui"
+            class="w-full p-2 border rounded"
+            required
+          />
+          <button 
+            type="submit"
+            class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
+          >
+            Encurtar
+          </button>
+        </form>
+      </div>
+
+      <!-- View 2: Card Elegante -->
+      <div class="view hidden-t" data-view="2">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold mb-4">URL Shortener</h2>
+          <form id="cardForm" class="space-y-4">
+            <div class="space-y-2">
+              <label class="text-sm text-gray-600">URL Original</label>
+              <input 
+                type="url" 
+                id="urlInput2" 
+                class="w-full p-3 border rounded-lg bg-gray-50"
+                required
+              />
+            </div>
+            <button 
+              type="submit"
+              class="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white p-3 rounded-lg hover:from-blue-600 hover:to-blue-800 transition"
+            >
+              Gerar URL Curta
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- View 3: Dashboard Style -->
+      <div class="view hidden-t" data-view="3">
+        <div class="bg-gray-100 p-6 rounded-lg">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">URL Dashboard</h2>
+            <span class="text-sm text-gray-500">Powered by Go</span>
+          </div>
+          <form id="dashboardForm" class="space-y-6">
+            <div class="grid gap-4">
+              <div>
+                <label class="text-sm font-medium text-gray-700">URL para encurtar</label>
+                <input 
+                  type="url" 
+                  id="urlInput3" 
+                  class="mt-1 w-full p-3 border rounded-lg"
+                  required
+                />
+              </div>
+              <div>
+                <label class="text-sm font-medium text-gray-700">URL personalizada (opcional)</label>
+                <input 
+                  type="text" 
+                  id="customUrl" 
+                  class="mt-1 w-full p-3 border rounded-lg"
+                  pattern="[a-zA-Z0-9-]+"
+                />
+              </div>
+            </div>
+            <button 
+              type="submit"
+              class="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition flex items-center justify-center gap-2"
+            >
+            <Icon icon="code" size="1.33em" />
+              <span>Encurtar URL</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resultado -->
+    <div id="result" class="mt-6 hidden-t">
+      <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800">URL Encurtada!</h3>
+        <div class="mt-2 flex items-center gap-2">
+          <input 
+            type="text" 
+            id="shortUrlResult" 
+            class="flex-1 p-2 border rounded bg-white"
+            readonly
+          />
+          <button 
+            onclick="copyToClipboard()"
+            class="bg-green-600 text-white p-2 rounded hover:bg-green-700 transition"
+          >
+          <Icon icon="code" size="1.33em" />
+          </button>
+        </div>
+        <p class="mt-2 text-sm text-green-600">
+          URLs expiram em 1 minuto para usuários normais e 5 minutos para premium
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button -->
+  <div class="fixed bottom-6 right-6">
+    <button 
+      id="viewToggle"
+      class="bg-blue-600 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-700 transition flex items-center justify-center"
+    >
+    <Icon icon="code" size="1.33em" />
+    </button>
+  </div>
+</div>
+
+<style>
+  .url-shortener-container {
+    @apply max-w-2xl mx-auto p-6;
+  }
+
+  .view-container {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+
+  .view {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .hidden-t {
+    @apply hidden;
+  }
+</style>
+
+<script define:vars={{ baseApiUrl }}>
+  let currentView = 1;
+  const totalViews = 3;
+
+  // Alternar entre views
+  document.getElementById('viewToggle').addEventListener('click', () => {
+    const views = document.querySelectorAll('.view');
+    views.forEach(view => view.classList.add('hidden-t'));
+    
+    currentView = (currentView % totalViews) + 1;
+    document.querySelector(`[data-view="${currentView}"]`).classList.remove('hidden-t');
+  });
+
+  // Função para copiar URL
+  window.copyToClipboard = () => {
+    const shortUrl = document.getElementById('shortUrlResult');
+    shortUrl.select();
+    document.execCommand('copy');
+    
+    // Feedback visual
+    const button = shortUrl.nextElementSibling;
+    const originalText = button.innerHTML;
+    button.innerHTML = '<Icon name="ph:check" class="w-5 h-5" />';
+    setTimeout(() => {
+      button.innerHTML = originalText;
+    }, 2000);
+  };
+
+  // Função para encurtar URL
+  async function shortenUrl(url, customUrl = '') {
+    try {
+      const response = await fetch(`${baseApiUrl}/api/urls`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          original_url: url,
+          custom_short: customUrl,
+          user_id: 1 // ID fixo para demonstração
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erro ao encurtar URL');
+      }
+
+      const data = await response.json();
+      
+      // Mostrar resultado
+      document.getElementById('result').classList.remove('hidden-t');
+      document.getElementById('shortUrlResult').value = data.full_url;
+      
+    } catch (error) {
+      alert('Erro ao encurtar URL: ' + error.message);
+    }
+  }
+
+  // Event listeners para os formulários
+  ['simpleForm', 'cardForm', 'dashboardForm'].forEach(formId => {
+    document.getElementById(formId).addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const viewNumber = formId.match(/\d+/)[0];
+      const url = document.getElementById(`urlInput${viewNumber}`).value;
+      const customUrl = formId === 'dashboardForm' 
+        ? document.getElementById('customUrl').value 
+        : '';
+      
+      await shortenUrl(url, customUrl);
+    });
+  });
+</script>

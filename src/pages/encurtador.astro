@@ -1,0 +1,48 @@
+---
+import URLShortener from "../components/URLShortener.astro";
+import Layout from "../layouts/Layout.astro";
+
+
+const apiUrl = import.meta.env.PUBLIC_URL_SHORTENER_API || 'http://small.up.railway.app';
+---
+
+<Layout title="URL Shortener - Meu Portfólio">
+  <main class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">URL Shortener</h1>
+        <p class="text-gray-600">
+          Um serviço de encurtamento de URLs construído com Go e PostgreSQL
+        </p>
+      </header>
+
+      <URLShortener baseApiUrl={apiUrl} />
+
+      <section class="mt-16">
+        <h2 class="text-2xl font-bold mb-6">Sobre o Projeto</h2>
+        <div class="prose prose-lg max-w-none">
+          <p>
+            Este encurtador de URLs foi desenvolvido como parte do meu portfólio,
+            demonstrando a integração entre um backend em Go e frontend em Astro.
+          </p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Tecnologias Utilizadas</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Backend: Go com Fiber framework</li>
+            <li>Database: PostgreSQL hospedado no Railway</li>
+            <li>Frontend: Astro com TailwindCSS</li>
+            <li>Deploy: Railway para o backend</li>
+          </ul>
+
+          <h3 class="text-xl font-semibold mt-8 mb-4">Funcionalidades</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>Encurtamento automático de URLs</li>
+            <li>URLs personalizadas (opcional)</li>
+            <li>Expiração automática (1 min normal / 5 min premium)</li>
+            <li>Interface responsiva com 3 designs diferentes</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
