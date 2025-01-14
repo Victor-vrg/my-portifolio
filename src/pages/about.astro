@@ -6,15 +6,18 @@ import Pill from "../components/Pill.astro";
 import SkillCard from "../components/SkillCard.astro";
 import AboutCartoon from "../assets/img/about-cartoon-style.jpg";
 import { Image } from "astro:assets";
+import ScrollReveal from "../components/ScrollReveal.astro";
 ---
 
 <Layout title="Sobre | Victor Resende" description="Desenvolvedor Full Stack focado em performance e experiências excepcionais">
 	<div class="stack gap-20">
 		<main class="wrapper about ">
+			<ScrollReveal animation="fade-up" delay={300}>
 			<Hero
 				title="Sobre mim"
 				tagline="Transformando linhas de código em experiências extraordinárias, um projeto por vez."
 			>
+			
 			<div class="flex justify-center">
 			<Image
 			width="650"
@@ -26,47 +29,58 @@ import { Image } from "astro:assets";
 	</div>
 	<a class="text-sm">“Designed by Freepik”</a>
 			</Hero>
-
+		</ScrollReveal>
 			<section>
 				<h2 class="section-title">Minha História</h2>
 				<div class="content">
+					<ScrollReveal animation="fade-up" delay={300}>
 					<p class="pb-1">
 						Minha jornada no desenvolvimento começou com uma curiosidade insaciável por entender como as coisas funcionam. 
 						Desde então, venho moldando minha carreira com foco em performance e simplicidade, sempre buscando o equilíbrio 
 						perfeito entre tecnologia de ponta e soluções práticas.
 					</p>
+					<ScrollReveal/>
+					<ScrollReveal animation="fade-up" delay={300}>
 					<p class="pb-1">
 						Como desenvolvedor full stack, me especializei em criar aplicações que não apenas funcionam, mas impressionam. 
 						Minha abordagem é baseada em três pilares fundamentais: performance excepcional, código limpo e experiência 
 						do usuário memorável. Este próprio site, construído com <a href="https://astro.build/">Astro</a>, é um 
 						exemplo prático dessa filosofia.
 					</p>
+					<ScrollReveal/>
+					<ScrollReveal animation="fade-up" delay={300}>
 					<p class="pb-1">
 						Além do código, dedico parte do meu tempo compartilhando conhecimento através do meu canal no YouTube, 
 						onde transformo conceitos complexos em conteúdo acessível e prático. Acredito que o verdadeiro 
 						conhecimento só se multiplica quando é compartilhado.
 					</p>
+					<ScrollReveal/>
 				</div>
 			</section>
-
+			
 			<section>
+				
 				<h2 class="section-title">Formação</h2>
 				<div class="content">
+					<ScrollReveal animation="fade-right" delay={300}>
 					<p>
 						Graduado em Análise e Desenvolvimento de Sistemas, com especializações focadas em desenvolvimento web e arquitetura de software. 
 						Minha formação acadêmica serve como base sólida para minha constante evolução autodidata na tecnologia.
 					</p>
+					<ScrollReveal/>
 					<div class="roles flex gap-2 py-4">
 						<Pill><Icon icon="code" size="1.33em" /> Full Stack Developer</Pill>
 						<Pill><Icon icon="microphone-stage" size="1.33em" /> Tech Content Creator</Pill>
 						<Pill><Icon icon="strategy" size="1.33em" /> Solution Architect</Pill>
 					</div>
 				</div>
+			
 			</section>
-
+			
 			<section>
 				<h2 class="section-title">Habilidades Técnicas</h2>
 				<div class="content">
+					<ScrollReveal animation="fade-left" delay={300}>
 					<div class="skills-grid">
 						<SkillCard
 							category="Frontend"
@@ -84,21 +98,26 @@ import { Image } from "astro:assets";
 							icon="rocket"
 						/>
 					</div>
+				</ScrollReveal>
 				</div>
 			</section>
 
 			<section>
 				<h2 class="section-title">Filosofia de Trabalho</h2>
 				<div class="content">
+					<ScrollReveal animation="fade-up" delay={300}>
 					<p>
 						Acredito que o melhor código é aquele que resolve problemas reais de forma eficiente. 
 						Minha abordagem sempre prioriza:
 					</p>
+				</ScrollReveal>
 					<ul class="philosophy-list">
+						<ScrollReveal animation="fade-right" delay={700}>
 						<li>Performance e otimização em cada linha de código</li>
 						<li>Arquiteturas simples e escaláveis</li>
 						<li>Experiências de usuário excepcionais</li>
 						<li>Soluções sustentáveis e de baixo custo</li>
+					</ScrollReveal>
 					</ul>
 				</div>
 			</section>

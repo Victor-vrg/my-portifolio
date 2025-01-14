@@ -11,9 +11,8 @@ const { data, id } = Astro.props.project;
 
 <a class="card" href={`/projetos/${data.slug}`}>
 	<span class="title">{data.title}</span>
-	<span class="text-xs p-2 bg-slate-300 ">{data.description}</span>
+	<span class="text-xs p-3">{data.description}</span>
 	<Image src={data.thumbnail} alt={data.img_alt || ''} loading="lazy" decoding="async" width={300} height={300} />
-	
 </a>
 
 <style>

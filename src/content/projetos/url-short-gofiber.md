@@ -8,6 +8,7 @@ tags:
 featured: true
 thumbnail: /src/assets/img/clean-arch.webp
 slug: url-short-gofiber
+liveUrl:  https://victor-vrg-portifolio.netlify.app/encurtador/
 ---
 
 # 🔗 URL Shortener API

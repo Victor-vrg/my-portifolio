@@ -1,5 +1,6 @@
 ---
 import { xmlToJsonUtil } from "xml-to-json-util";
+import VideoCard from './VideoCard.astro';
 const req = await fetch(
   "https://www.youtube.com/feeds/videos.xml?channel_id=UCwJjFIDpdNN0Dk3vSNZby1g"
 );
@@ -22,27 +23,17 @@ const finalVideos = sortedVideos.slice(0, 3).map((video: any) => {
     published: video.published,
   };
 });
-
-
-import PlayButton from "../assets/svg/play.svg";
 ---
 
 <div class="flex gap-4">
   {
     finalVideos.map(({ title, id }) => (
-      <div class="border-2 p-4 rounded w-62 h-42 grid place-items-center">
-        <a href={`https://www.youtube.com/watch?v=${id}`}>
-          <img
-            src={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
-            alt={title}
-            width={300}
-            height={175}
-          />
-        </a>
-        
-        <PlayButton class="absolute text-white" />
-      </div>
-      
+    
+      <VideoCard
+    title={title}
+    thumbnailUrl={`https://img.youtube.com/vi/${id}/maxresdefault.jpg`}
+    videoUrl="https://www.youtube.com/watch?v=37zaxMB7_e0"
+  />
     ))
   }
 </div>

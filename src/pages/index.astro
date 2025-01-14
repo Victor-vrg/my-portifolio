@@ -1,259 +1,320 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 // Component Imports
 
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
-import Pill from '../components/Pill.astro';
-import VideoCards from '../components/VideoCards.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import MyProfileImage from '../assets/img/1735816945176.jpg'
-import { Image } from 'astro:assets';
+import Grid from "../components/Grid.astro";
+import Hero from "../components/Hero.astro";
+import Icon from "../components/Icon.astro";
+import Pill from "../components/Pill.astro";
+import VideoCards from "../components/VideoCards.astro";
+import PortfolioPreview from "../components/PortfolioPreview.astro";
+import MyProfileImage from "../assets/img/1735816945176.jpg";
+import { Image } from "astro:assets";
+import ScrollReveal from "../components/ScrollReveal.astro";
 
 // Page section components
 
-
-const projects = await getCollection('projetos');
+const projects = await getCollection("projetos");
 ---
 
 <Layout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<Hero
-					title="Hello, my name is Victor Resende"
-					tagline="I am a Fullstack Developer."
-					align="start"
-				>
-					<div class="roles">
-						<Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
-						<Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill>
-						<Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
-					</div>
-				</Hero>
+  <div class="stack gap-20 lg:gap-48">
+    <div class="wrapper stack gap-8 lg:gap-20">
+      <header class="hero">
+        <ScrollReveal animation="fade-right">
+          <Hero
+            title="Hello, my name is Victor Resende"
+            tagline="I am a Fullstack Developer."
+            align="start"
+          >
+            <div class="roles">
+              <Pill><Icon icon="code" size="1.33em" /> Developer</Pill>
+              <Pill><Icon icon="microphone-stage" size="1.33em" /> Speaker</Pill
+              >
+              <Pill><Icon icon="pencil-line" size="1.33em" /> Writer</Pill>
+            </div>
+          </Hero>
+        </ScrollReveal>
 
-				<Image
-					alt="My Profile Image"
-					width="480"
-					height="620"
-				    src={MyProfileImage}
-				/>
-			</header>
+        <ScrollReveal animation="fade-left" delay={300}>
+          <Image
+            alt="My Profile Image"
+            width="480"
+            height="620"
+            src={MyProfileImage}
+          />
+        </ScrollReveal>
+      </header>
+    </div>
 
-		</div>
+    <main class="wrapper stack gap-20 lg:gap-48">
+      <section class="section with-background">
+        <header class="section-header stack gap-2 lg:gap-4">
+          <ScrollReveal>
+            <h3>Laboratório de Ideias & POCs</h3>
+            <p>
+              Conjunto de projetos experimentais e MVPs desenvolvidos para
+              demonstrar conceitos técnicos na prática. Cada repositório é uma
+              POC funcional rodando em free tier, provando que é possível
+              implementar boas práticas mesmo com recursos limitados.
+            </p>
+          </ScrollReveal>
+        </header>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
+        <div class="gallery">
+          <Grid variant="offset">
+            {
+              projects.map((project, index) => (
+                <ScrollReveal delay={index * 200}>
+                  <li>
+                    <PortfolioPreview project={project} />
+                  </li>
+                </ScrollReveal>
+              ))
+            }
+          </Grid>
+        </div>
+      </section>
+
+      <section class="">
+        <ScrollReveal>
+          <header class="section-header stack gap-2 lg:gap-4">
+            <h3>Compartilhando Conhecimento</h3>
+            <p>
+              No meu canal, compartilho experiências práticas e dicas objetivas
+              sobre desenvolvimento. São conteúdos técnicos explicados de forma
+              clara e direta, pensados para ajudar outros devs.
+            </p>
+          </header>
+        </ScrollReveal>
+
+        <ScrollReveal delay={200}>
+          <div class="w-full py-4 justify-items-center my-5">
+            <VideoCards />
+          </div>
+        </ScrollReveal>
+      </section>
+
+      <!-- <section class="section with-background bg-variant">
 				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Alguns projetos publicos</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere accusamus corporis officia delectus optio odit illo fugit sint repellendus dignissimos similique error deserunt, nemo tempore debitis ipsam, molestiae magni iusto.</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-
-				<div class="cta">
-				
-				</div>
-			</section>
-
-            <section class="">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Meus ultimos videos</h3>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore perferendis tempore laborum quos voluptates natus sit commodi</p>
-				</header>
-
-				<div class="w-full py-4 justify-items-center">
-					<VideoCards />
-				</div>
-
-			
-			</section>
-
-			<section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>lorem </h3>
+					<h4>Impacto & Contribuições</h4>
 					<p>
-						I have been fortunate enough to receive praise for my work in several publications. Take
-						a look below to learn more.
+						Acredito que tecnologia é sobre resolver problemas reais e ajudar pessoas. 
+						Aqui estão algumas áreas onde tenho focado minha contribuição para a comunidade.
 					</p>
 				</header>
-
+			
 				<div class="gallery">
 					<Grid variant="small">
 						{
-							['Medium', 'BuzzFeed', 'The Next Web', 'awwwards.', 'TechCrunch'].map((brand) => (
-								<li class="mention-card">
-									<p>{brand}</p>
-                                  
+							[
+								{
+									title: 'Mentorias',
+									description: 'Mais de 200 horas dedicadas a ajudar devs iniciantes',
+									icon: 'mentor'
+								},
+								{
+									title: 'Open Source',
+									description: 'Contribuições ativas para projetos da comunidade',
+									icon: 'github'
+								},
+								{
+									title: 'Performance',
+									description: 'Especialização em otimização e boas práticas',
+									icon: 'speed'
+								},
+								{
+									title: 'Conteúdo Tech',
+									description: 'Artigos e vídeos sobre desenvolvimento',
+									icon: 'video'
+								}
+							].map((item) => (
+								<li class="impact-card">
+									<Icon icon={item.icon} size="2.5em" />
+									<h4>{item.title}</h4>
+									<p>{item.description}</p>
 								</li>
 							))
-                            
 						}
 					</Grid>
 				</div>
 			</section>
-		</main>
-
-	
-	</div>
+ -->
+    </main>
+  </div>
 </Layout>
 
 <style>
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 2rem;
-	}
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
 
-	.roles {
-		display: none;
-	}
+  .roles {
+    display: none;
+  }
 
-	.hero img {
-		aspect-ratio: 5 / 4;
-		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
+  .hero img {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-md);
+  }
 
-	@media (min-width: 50em) {
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
+  .impact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    border: 1px solid var(--gray-800);
+    border-radius: 1.5rem;
+    background: var(--gradient-subtle);
+    box-shadow: var(--shadow-sm);
+    gap: 0.5rem;
+  }
 
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
+  .impact-card h4 {
+    font-size: var(--text-lg);
+    color: var(--gray-200);
+  }
 
-		.hero img {
-			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
-	}
+  .impact-card p {
+    font-size: var(--text-sm);
+    color: var(--gray-300);
+    line-height: 1.4;
+  }
+  @media (min-width: 50em) {
+    .hero {
+      display: grid;
+      grid-template-columns: 6fr 4fr;
+      padding-inline: 2.5rem;
+      gap: 3.75rem;
+    }
 
-	/* ====================================================== */
+    .roles {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 0.5rem;
+    }
 
-	.section {
-		display: grid;
-		gap: 2rem;
-	}
+    .hero img {
+      aspect-ratio: 3 / 4;
+      border-radius: 4.5rem;
+      object-fit: cover;
+    }
+    .impact-card {
+      padding: 2.5rem;
+    }
+  }
 
-	.with-background {
-		position: relative;
-	}
+  /* ====================================================== */
 
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
+  .section {
+    display: grid;
+    gap: 2rem;
+  }
 
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			url('../assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
+  .with-background {
+    position: relative;
+  }
 
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
+  .with-background::before {
+    --hero-bg: var(--bg-image-subtle-2);
 
-	.section-header {
-		justify-self: center;
-		text-align: center;
-		max-width: 50ch;
-		font-size: var(--text-md);
-		color: var(--gray-300);
-	}
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    left: 50%;
+    width: 100vw;
+    aspect-ratio: calc(2.25 / var(--bg-scale));
+    top: 0;
+    transform: translateY(-75%) translateX(-50%);
+    background:
+      url("../assets/backgrounds/noise.png") top center/220px repeat,
+      var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+      var(--gray-999);
+    background-blend-mode: overlay, normal, normal, normal;
+    mix-blend-mode: var(--bg-blend-mode);
+    z-index: -1;
+  }
 
-	.section-header h3 {
-		font-size: var(--text-2xl);
-	}
+  .with-background.bg-variant::before {
+    --hero-bg: var(--bg-image-subtle-1);
+  }
 
-	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 5rem;
-		}
+  .section-header {
+    justify-self: center;
+    text-align: center;
+    max-width: 50ch;
+    font-size: var(--text-md);
+    color: var(--gray-300);
+  }
 
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
+  .section-header h3 {
+    font-size: var(--text-2xl);
+  }
 
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
+  @media (min-width: 50em) {
+    .section {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-areas: "header header header header" "gallery gallery gallery gallery";
+      gap: 5rem;
+    }
 
-		.section-header h3 {
-			font-size: var(--text-4xl);
-		}
+    .section.with-cta {
+      grid-template-areas: "header header header cta" "gallery gallery gallery gallery";
+    }
 
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
-		}
+    .section-header {
+      grid-area: header;
+      font-size: var(--text-lg);
+    }
 
-		.gallery {
-			grid-area: gallery;
-		}
+    .section-header h3 {
+      font-size: var(--text-4xl);
+    }
 
-		.cta {
-			grid-area: cta;
-		}
-	}
+    .with-cta .section-header {
+      justify-self: flex-start;
+      text-align: left;
+    }
 
-	/* ====================================================== */
+    .gallery {
+      grid-area: gallery;
+    }
 
-	.mention-card {
-		display: flex;
-		height: 7rem;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		color: var(--gray-300);
-		background: var(--gradient-subtle);
-		box-shadow: var(--shadow-sm);
-	}
+    .cta {
+      grid-area: cta;
+    }
+  }
 
-	@media (min-width: 50em) {
-		.mention-card {
-			border-radius: 1.5rem;
-			height: 9.5rem;
-		}
-	}
+  /* ====================================================== */
+
+  .mention-card {
+    display: flex;
+    height: 7rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--gray-800);
+    border-radius: 1.5rem;
+    color: var(--gray-300);
+    background: var(--gradient-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (min-width: 50em) {
+    .mention-card {
+      border-radius: 1.5rem;
+      height: 9.5rem;
+    }
+  }
 </style>
