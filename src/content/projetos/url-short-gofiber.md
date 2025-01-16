@@ -6,7 +6,7 @@ tags:
   - Go
   - PostgreSQL
 featured: true
-thumbnail: /src/assets/img/clean-arch.webp
+thumbnail: https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2024/08/illustration-of-a-browser-with-a-link-being-shortened.jpg
 slug: url-short-gofiber
 liveUrl:  https://victor-vrg-portifolio.netlify.app/encurtador/
 ---
