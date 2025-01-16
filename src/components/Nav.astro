@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import type { iconPaths } from './IconPaths';
+import { Image } from 'astro:assets';
 
 /** Main menu items */
 const textLinks: { label: string; href: string }[] = [
@@ -29,7 +30,7 @@ const isCurrentPage = (href: string) => {
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
-			<img src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" width="30px">
+			<Image loading={'lazy'} src="https://raw.githubusercontent.com/iampavangandhi/iampavangandhi/master/gifs/Hi.gif" alt={'hi gif'} width={30} height={30} ></Image>
 			Victor Gualberto
 		</a>
 		<menu-button>
