@@ -1,10 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import emailImage from "../assets/svg/icons/email.svg";
-import githubImage from "../assets/svg/icons/github.svg";
-import instagramImage from "../assets/svg/icons/instagram.svg";
-import linkedInImage from "../assets/svg/icons/linkedin.svg";
-import tiktokImage from "../assets/svg/icons/tiktok.svg";
 import socialsData from "../data/social.json";
 
 
@@ -18,13 +13,14 @@ enum Type {
 }
 
 const iconsMap = {
-  emailImage,
-  githubImage,
-  instagramImage,
-  linkedInImage,
-  tiktokImage,
+  emailImage: '/svg/icons/email.svg',
+  githubImage: '/svg/icons/github.svg',
+  instagramImage: '/svg/icons/instagram.svg',
+  linkedInImage: '/svg/icons/linkedin.svg',
+  tiktokImage: '/svg/icons/tiktok.svg',
 };
-const fallbackIcon = emailImage; 
+
+const fallbackIcon = iconsMap.linkedInImage; 
 
 const socials = socialsData.map((social) => ({
   ...social,
@@ -49,7 +45,7 @@ const getClass = (type: Type) =>
         target="_blank"
         rel="nofollow noopener"
       >
-        <Image class="size-14 p-3 md:size-16" src={s.icon} alt={s.name} />
+        <Image class="size-14 p-3 md:size-16" src={s.icon} alt={s.name} height={30} width={30} />
       </a>
     ))
   }
