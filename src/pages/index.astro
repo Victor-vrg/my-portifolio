@@ -15,6 +15,7 @@ import PortfolioPreview from "../components/PortfolioPreview.astro";
 import MyProfileImage from "../assets/img/1735816945176.jpg";
 import { Image } from "astro:assets";
 import ScrollReveal from "../components/ScrollReveal.astro";
+import ServiceCTA from "../components/ServiceCTA.astro";
 
 // Page section components
 
@@ -98,51 +99,11 @@ const projects = await getCollection("projetos");
         </ScrollReveal>
       </section>
 
-      <!-- <section class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h4>Impacto & Contribuições</h4>
-					<p>
-						Acredito que tecnologia é sobre resolver problemas reais e ajudar pessoas. 
-						Aqui estão algumas áreas onde tenho focado minha contribuição para a comunidade.
-					</p>
-				</header>
-			
-				<div class="gallery">
-					<Grid variant="small">
-						{
-							[
-								{
-									title: 'Mentorias',
-									description: 'Mais de 200 horas dedicadas a ajudar devs iniciantes',
-									icon: 'mentor'
-								},
-								{
-									title: 'Open Source',
-									description: 'Contribuições ativas para projetos da comunidade',
-									icon: 'github'
-								},
-								{
-									title: 'Performance',
-									description: 'Especialização em otimização e boas práticas',
-									icon: 'speed'
-								},
-								{
-									title: 'Conteúdo Tech',
-									description: 'Artigos e vídeos sobre desenvolvimento',
-									icon: 'video'
-								}
-							].map((item) => (
-								<li class="impact-card">
-									<Icon icon={item.icon} size="2.5em" />
-									<h4>{item.title}</h4>
-									<p>{item.description}</p>
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-			</section>
- -->
+      <section class="mx-auto mb-48">
+        <ScrollReveal delay={200} animation="fade-right">
+        <ServiceCTA  />
+      </ScrollReveal>
+      </section>
     </main>
   </div>
 </Layout>

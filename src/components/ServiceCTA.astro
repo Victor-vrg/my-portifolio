@@ -1,0 +1,306 @@
+---
+import Icon from "./Icon.astro";
+
+// src/components/ServiceCTA.astro
+---
+
+<section class="service-cta">
+  <div class="cta-initial">
+    <div class="cta-decoration">
+    
+    </div>
+    <div class="cta-content">
+      <h2>Vamos criar algo incrível juntos?</h2>
+      <p>
+        Transforme suas ideias em realidade com desenvolvimento focado em
+        performance e resultados
+      </p><Icon icon="rocket"  />
+      <button id="startButton" class="cta-button">
+        Começar projeto
+        <Icon icon="mock" />
+      </button>
+    </div>
+  </div>
+
+  <div class="steps-container hidden">
+    <button id="backButton" class="back-button hidden">
+      <Icon icon="arrow-left" />
+      Voltar
+    </button>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <div id="stepsContent"></div>
+
+    <div id="contactForm" class="contact-form hidden">
+      <h3>Vamos conversar sobre seu projeto</h3>
+      <p id="selectionSummary" class="selection-summary my-5"></p>
+
+      <form id="projectForm" name="contact" data-netlify="true">
+        <div class="form-group">
+          <Icon icon="terminal-window" />
+          <input type="text" name="name" placeholder="Seu nome" required />
+        </div>
+
+        <div class="form-group">
+          <Icon icon="pencil-line" />
+          <input type="email" name="email" placeholder="Seu e-mail" required />
+        </div>
+
+        <div class="form-group">
+          <Icon icon="mock" />
+          <input type="tel" name="phone" placeholder="Seu telefone" />
+        </div>
+
+        <div class="form-group">
+          <textarea
+            name="message"
+            placeholder="Conte mais sobre seu projeto..."
+            rows="4"
+            required></textarea>
+        </div>
+
+        <button type="submit" class="submit-button">
+          Enviar mensagem
+          <Icon icon="rocket-launch" />
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-cta {
+    @apply relative w-full max-w-7xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden;
+  }
+
+  .cta-initial {
+    @apply grid md:grid-cols-2 gap-8 p-8 md:p-12 bg-gradient-to-r from-sky-200 via-emerald-300 to-emerald-300;
+  }
+
+  .cta-content {
+    @apply space-y-4;
+  }
+
+  .cta-content h2 {
+    @apply text-2xl md:text-4xl font-bold;
+  }
+
+  .cta-content p {
+    @apply text-lg opacity-90;
+  }
+
+  .cta-button {
+    @apply inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg font-semibold 
+    hover:bg-blue-50 transition-colors gap-2;
+  }
+
+  .cta-decoration {
+    @apply hidden md:flex justify-end items-center;
+  }
+
+  .icon-primary {
+    @apply w-24 h-24 text-blue-200;
+  }
+
+  .steps-container {
+    @apply p-8 space-y-6;
+  }
+
+  .back-button {
+    @apply absolute top-4 left-4 p-2 text-gray-600 hover:text-gray-900 inline-flex items-center gap-2;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-gray-100 rounded-full mb-8;
+  }
+
+  .progress-fill {
+    @apply h-2 bg-blue-500 rounded-full transition-all duration-500;
+  }
+
+  .form-group {
+    @apply relative mb-4;
+  }
+
+  .form-group svg {
+    @apply absolute left-3 top-1/2 w-5 h-5 text-gray-400 -translate-y-1/2;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    @apply w-full py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  }
+
+  .form-group input {
+    @apply pl-10 pr-4; /* Espaço para o ícone */
+  }
+
+  .form-group textarea {
+    @apply px-4 py-3; /* Sem ícone no textarea */
+  }
+
+  .submit-button {
+    @apply w-full py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+    transition-colors inline-flex items-center justify-center gap-2;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const steps = [
+    {
+      title: "O que você precisa?",
+      description:
+        "Selecione o tipo de projeto que mais se aproxima da sua necessidade",
+      options: [
+        {
+          title: "Landing Page",
+          description: "Site institucional ou página de conversão",
+        },
+        { title: "Sistema Web", description: "Aplicação completa com backend" },
+        {
+          title: "API/Integração",
+          description: "Desenvolvimento de APIs e integrações",
+        },
+      ],
+    },
+    {
+      title: "Qual o prazo ideal?",
+      description: "Quando você precisa do projeto funcionando?",
+      options: [
+        { title: "Urgente", description: "Em até 30 dias" },
+        { title: "Moderado", description: "Entre 1-3 meses" },
+        { title: "Flexível", description: "Mais de 3 meses" },
+      ],
+    },
+    {
+      title: "Qual seu orçamento estimado?",
+      description:
+        "Selecione a faixa que melhor se encaixa no seu planejamento",
+      options: [
+      { id: 'small', title: 'Pequeno', description: 'Até R$ 5.000' },
+        { id: 'medium', title: 'Médio', description: 'R$ 5.000 - R$ 15.000' },
+        { id: 'large', title: 'Grande', description: 'Acima de R$ 15.000' }
+      ],
+    },
+  ];
+  let currentStep = 0;
+  let selections = {
+    projectType: "",
+    timeline: "",
+    budget: "",
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.getElementById("startButton");
+    const backButton = document.getElementById("backButton");
+    const ctaInitial = document.querySelector(".cta-initial");
+    const stepsContainer = document.querySelector(".steps-container");
+    const stepsContent = document.getElementById("stepsContent");
+    const contactForm = document.getElementById("contactForm");
+    const progressFill = document.querySelector(".progress-fill");
+
+    startButton?.addEventListener("click", () => {
+      ctaInitial?.classList.add("hidden");
+      stepsContainer?.classList.remove("hidden");
+      backButton?.classList.remove("hidden");
+      renderStep();
+    });
+
+    backButton?.addEventListener("click", () => {
+      if (contactForm?.classList.contains("hidden")) {
+        if (currentStep > 0) {
+          currentStep--;
+          renderStep();
+        } else {
+          ctaInitial?.classList.remove("hidden");
+          stepsContainer?.classList.add("hidden");
+          backButton?.classList.add("hidden");
+        }
+      } else {
+        contactForm?.classList.add("hidden");
+        stepsContent?.classList.remove("hidden");
+        currentStep = steps.length - 1;
+        console.log(currentStep);
+        renderStep();
+      }
+    });
+
+    function renderStep() {
+      if (!stepsContent) return;
+
+      // Correção da progress bar
+      const progress = (currentStep / (steps.length - 1)) * 97;
+      progressFill.style.width = `${progress}%`;
+
+      const step = steps[currentStep];
+      stepsContent.innerHTML = `
+        <div class="text-center space-y-2 mb-8">
+          <h3 class="text-2xl font-bold text-gray-900">${step.title}</h3>
+          <p class="text-gray-600">${step.description}</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          ${step.options
+            .map(
+              (option) => `
+            <button class="option-button p-6 text-left border border-gray-200 rounded-xl 
+            hover:border-blue-500 hover:shadow-lg transition-all duration-200">
+              <h4 class="font-semibold mb-2 text-base text-gray-900">${option.title}</h4>
+              <p class="text-sm text-gray-600">${option.description}</p>
+            </button>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+
+      document.querySelectorAll(".option-button").forEach((button, index) => {
+        button.addEventListener("click", () =>
+          handleOptionSelect(step.options[index])
+        );
+      });
+    }
+
+    function handleOptionSelect(option) {
+      if (currentStep === 0) {
+        selections.projectType = option.title;
+      } else if (currentStep === 1) {
+        selections.timeline = option.title;
+      } else {
+        selections.budget = option.title;
+      }
+
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        renderStep();
+      } else {
+        showContactForm();
+      }
+    }
+
+    function showContactForm() {
+      if (!contactForm || !stepsContent) return;
+
+      stepsContent.classList.add("hidden");
+      contactForm.classList.remove("hidden");
+
+      const summary = document.getElementById("selectionSummary");
+      if (summary) {
+        summary.textContent = `Projeto: ${selections.projectType} | Prazo: ${selections.timeline} | Orçamento: ${selections.budget}`;
+      }
+    }
+
+    const projectForm = document.getElementById("projectForm");
+    projectForm?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Adicione aqui sua lógica de envio do formulário
+      console.log("Form submitted:", selections);
+    });
+  });
+</script>
