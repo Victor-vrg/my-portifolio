@@ -6,9 +6,7 @@ import Icon from "./Icon.astro";
 
 <section class="service-cta">
   <div class="cta-initial">
-    <div class="cta-decoration">
-    
-    </div>
+    <div class="cta-decoration"></div>
     <div class="cta-content">
       <h2 class="dark:text-slate-800">Vamos criar algo incrível juntos?</h2>
       <p class="dark:text-slate-700">
@@ -38,19 +36,25 @@ import Icon from "./Icon.astro";
       <h3>Vamos conversar sobre seu projeto</h3>
       <p id="selectionSummary" class="selection-summary my-5"></p>
 
-      <form id="projectForm" name="contact" data-netlify="true">
+      <form id="projectForm" name="contact" method="POST" data-netlify="true">
         <div class="form-group">
-          <div class="absolute top-3 left-3 w-5 h-5 text-gray-400"> <Icon icon="terminal-window" /></div>
+          <div class="absolute top-3 left-3 w-5 h-5 text-gray-400">
+            <Icon icon="terminal-window" />
+          </div>
           <input type="text" name="name" placeholder="Seu nome" required />
         </div>
 
         <div class="form-group">
-          <div class="absolute top-3 left-3 w-5 h-5 text-gray-400"> <Icon icon="pencil-line" /></div>
+          <div class="absolute top-3 left-3 w-5 h-5 text-gray-400">
+            <Icon icon="pencil-line" />
+          </div>
           <input type="email" name="email" placeholder="Seu e-mail" required />
         </div>
 
         <div class="form-group">
-          <div class="absolute top-3 left-3 w-5 h-5 text-gray-400"> <Icon icon="mock" /></div>
+          <div class="absolute top-3 left-3 w-5 h-5 text-gray-400">
+            <Icon icon="mock" />
+          </div>
           <input type="tel" name="phone" placeholder="Seu telefone" />
         </div>
 
@@ -154,45 +158,73 @@ import Icon from "./Icon.astro";
 
   #snackbar {
     visibility: hidden;
-  min-width: 250px;
-  margin-left: -125px;
-  background-color: rgb(74 222 128);
-  color: #fff;
-  text-align: center;
-  border-radius: 0.5rem;
-  padding: 16px;
-  position: fixed;
-  z-index: 1;
-  left: 100%;
-  bottom: 30px;
-  font-size: 1rem;
-}
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: rgb(74 222 128);
+    color: #fff;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 100%;
+    bottom: 30px;
+    font-size: 1rem;
+  }
 
-#snackbar.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-}
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation:
+      fadein 0.5s,
+      fadeout 0.5s 2.5s;
+    animation:
+      fadein 0.5s,
+      fadeout 0.5s 2.5s;
+  }
 
-@-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
-}
+  @-webkit-keyframes fadein {
+    from {
+      bottom: 0;
+      opacity: 0;
+    }
+    to {
+      bottom: 30px;
+      opacity: 1;
+    }
+  }
 
-@keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
-}
+  @keyframes fadein {
+    from {
+      bottom: 0;
+      opacity: 0;
+    }
+    to {
+      bottom: 30px;
+      opacity: 1;
+    }
+  }
 
-@-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
-}
+  @-webkit-keyframes fadeout {
+    from {
+      bottom: 30px;
+      opacity: 1;
+    }
+    to {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
 
-@keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
-}
+  @keyframes fadeout {
+    from {
+      bottom: 30px;
+      opacity: 1;
+    }
+    to {
+      bottom: 0;
+      opacity: 0;
+    }
+  }
 </style>
 
 <script>
@@ -227,9 +259,9 @@ import Icon from "./Icon.astro";
       description:
         "Selecione a faixa que melhor se encaixa no seu planejamento",
       options: [
-      { id: 'small', title: 'Pequeno', description: 'Até R$ 5.000' },
-        { id: 'medium', title: 'Médio', description: 'R$ 5.000 - R$ 15.000' },
-        { id: 'large', title: 'Grande', description: 'Acima de R$ 15.000' }
+        { id: "small", title: "Pequeno", description: "Até R$ 5.000" },
+        { id: "medium", title: "Médio", description: "R$ 5.000 - R$ 15.000" },
+        { id: "large", title: "Grande", description: "Acima de R$ 15.000" },
       ],
     },
   ];
@@ -340,16 +372,25 @@ import Icon from "./Icon.astro";
     }
 
     function ShowToast() {
-  var x = document.getElementById("snackbar");
-  x.className = "show";
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 7000);
-}
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function () {
+        x.className = x.className.replace("show", "");
+      }, 7000);
+    }
 
     const projectForm = document.getElementById("projectForm");
     projectForm?.addEventListener("submit", (e) => {
       e.preventDefault();
       // Adicione aqui sua lógica de envio do formulário
       ShowToast();
+      document.getElementById("projectForm").reset();
+      setTimeout(() => {
+    ctaInitial?.classList.remove("hidden");
+    contactForm?.classList.add("hidden");
+    stepsContainer?.classList.add("hidden");
+    backButton?.classList.add("hidden");
+  }, 1200);
     });
   });
 </script>
