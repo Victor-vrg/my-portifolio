@@ -37,6 +37,7 @@ import Icon from "./Icon.astro";
       <p id="selectionSummary" class="selection-summary my-5"></p>
 
       <form id="projectForm" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
         <div class="form-group">
           <div class="absolute top-3 left-3 w-5 h-5 text-gray-400">
             <Icon icon="terminal-window" />
@@ -371,26 +372,45 @@ import Icon from "./Icon.astro";
       }
     }
 
-    function ShowToast() {
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function () {
-        x.className = x.className.replace("show", "");
-      }, 7000);
-    }
+    
+  const projectForm = document.getElementById("projectForm");
 
-    const projectForm = document.getElementById("projectForm");
-    projectForm?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      // Adicione aqui sua lógica de envio do formulário
-      ShowToast();
-      document.getElementById("projectForm").reset();
-      setTimeout(() => {
-    ctaInitial?.classList.remove("hidden");
-    contactForm?.classList.add("hidden");
-    stepsContainer?.classList.add("hidden");
-    backButton?.classList.add("hidden");
-  }, 1200);
-    });
+  projectForm?.addEventListener("submit", (e) => {
+    e.preventDefault(); // Impede o envio padrão
+
+    // Captura os dados do formulário
+    const formData = new FormData(projectForm);
+
+    // Envia os dados para o Netlify
+    fetch("/", {
+      method: "POST",
+      body: new URLSearchParams(formData), // Converte os dados para o formato correto
+    })
+      .then(() => {
+        ShowToast(); // Mostra o toast de sucesso
+        projectForm.reset(); // Reseta o formulário
+
+        // Reinicia a interface
+        setTimeout(() => {
+          document.querySelector(".cta-initial").classList.remove("hidden");
+          document.querySelector(".contact-form").classList.add("hidden");
+          document.querySelector(".steps-container").classList.add("hidden");
+          document.getElementById("backButton").classList.add("hidden");
+        }, 1200);
+      })
+      .catch((error) => {
+        console.error("Erro ao enviar formulário:", error);
+        alert("Erro ao enviar. Tente novamente.");
+      });
   });
+
+  function ShowToast() {
+    const x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(() => {
+      x.className = x.className.replace("show", "");
+    }, 7000);
+  }
+});
+
 </script>
