@@ -46,9 +46,9 @@ O principal desafio deste projeto é mostrar que é possível criar aplicativos 
 
 ### Mídia
 
-![ecommercer-print1](https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/ecommercer-print1.jpg)
+![ecommercer-print1](https://raw.githubusercontent.com/Victor-vrg/my-portifolio/refs/heads/master/public/img/ecommercer-print1.jpg)
 
-![ecommercer-print2](https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/ecommercer-print2.jpg)
+![ecommercer-print2](https://raw.githubusercontent.com/Victor-vrg/my-portifolio/refs/heads/master/public/img/ecommercer-print2.jpg)
 
 <video controls src="https://github.com/Victor-vrg/my-portifolio/blob/master/public/gif/2025-02-17%2021-38-47.mp4" title="generate description"></video>
 
