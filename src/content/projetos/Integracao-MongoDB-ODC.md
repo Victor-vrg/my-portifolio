@@ -8,7 +8,7 @@ tags:
   - MongoDB
   - Outsystems ODC
 featured: true
-thumbnail: public/img/mongodb.png
+thumbnail: https://github.com/Victor-vrg/my-portifolio/blob/master/public/img//mongodb.png?raw=true
 slug: Integracao-MongoDB-ODC
 ---
 # Desenvolvimento de Conector MongoDB para Outsystems ODC
@@ -48,9 +48,9 @@ O conector desenvolvido permite que qualquer desenvolvedor Outsystems:
 
 ### Mídia
 
-![Exemplo Funções](https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/add-dependecy.png)
+![Exemplo Funções](https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/add-dependecy.png?raw=true)
 
-![App demostração](https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/demoMongoDBodc.png)
+![App demostração](https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/demoMongoDBodc.png?raw=true)
 
 ## Próximos Passos
 
