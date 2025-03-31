@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Icon from "./Icon.astro";
-import CtaDecoration from '../../public/svg/cta.svg';
+import CtaDecoration from '/svg/cta.svg';
 
 const cta_Image = CtaDecoration;
 ---
@@ -11,7 +11,7 @@ const cta_Image = CtaDecoration;
 <section class="service-cta">
   <div class="cta-initial">
     <div class="cta-decoration">
-      <Image src={cta_Image} alt="Cta Decoration"/>
+      <Image src={cta_Image} alt="Cta Decoration" loading="eager"/>
     </div>
     <div class="cta-content">
       <h2 class="dark:text-slate-800">Vamos criar algo incrível juntos?</h2>

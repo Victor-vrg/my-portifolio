@@ -1,11 +1,11 @@
 ---
 import { getCollection } from "astro:content";
+import { meta } from "astro:content";
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import Layout from "../layouts/Layout.astro";
 
 // Component Imports
-
 import Grid from "../components/Grid.astro";
 import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
@@ -18,9 +18,14 @@ import ScrollReveal from "../components/ScrollReveal.astro";
 import ServiceCTA from "../components/ServiceCTA.astro";
 
 // Page section components
-
 const projects = await getCollection("projetos");
+
 ---
+
+<meta 
+  title="Victor Resende Gualberto - Fullstack Developer & Tech Content Creator"
+  description="Portfolio of Victor Resende Gualberto, a passionate Fullstack Developer and content creator focused on sharing technical knowledge through practical projects and tutorials."
+/> 
 
 <Layout>
   <div class="stack gap-20 lg:gap-48">
@@ -28,8 +33,8 @@ const projects = await getCollection("projetos");
       <header class="hero">
         <ScrollReveal animation="fade-right">
           <Hero
-            title="Hello, my name is Victor Resende"
-            tagline="I am a Fullstack Developer."
+            title="Hello, my name is Victor Resende Gualberto"
+            tagline="I am a Fullstack Developer & Tech Content Creator."
             align="start"
           >
             <div class="roles">
