@@ -4,7 +4,7 @@
 }
 /* Estilos base para o conteúdo Markdown */
 .content {
-    max-width: 85ch;
+    max-width: 120ch;
     margin: 0 auto;
     line-height: 1.6;
     overflow: auto;

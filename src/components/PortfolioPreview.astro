@@ -10,7 +10,7 @@ const { data, id } = Astro.props.project;
 // Format image path for proper loading
 const imagePath = typeof data.thumbnail === 'string' 
   ? data.thumbnail 
-  : data.thumbnail.src;
+  : data.thumbnail?.src || '';
 ---
 
 <a class="card" href={`/projetos/${data.slug}`}>
