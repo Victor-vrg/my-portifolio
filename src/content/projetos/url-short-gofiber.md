@@ -6,7 +6,7 @@ tags:
   - Go
   - PostgreSQL
 featured: true
-thumbnail: https://github.com/Victor-vrg/my-portifolio/blob/master/public/img/encurtador.webp
+thumbnail: https://raw.githubusercontent.com/Victor-vrg/my-portifolio/refs/heads/master/public/img/encurtador.webp
 slug: url-short-gofiber
 liveUrl:  https://victor-vrg-portifolio.netlify.app/encurtador/
 ---
