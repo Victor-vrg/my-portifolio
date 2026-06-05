@@ -16,9 +16,32 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="pt-BR">
 	<head>
 		<MainHead title={title} description={description} />
+		<script is:inline type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "Person",
+					"name": "Victor Resende Gualberto",
+					"url": "https://victorgualberto.com.br",
+					"jobTitle": "Fullstack Developer",
+					"description": "Desenvolvedor Fullstack e criador de conteúdo tech especializado em React, Node.js, TypeScript e performance.",
+					"sameAs": [
+						"https://github.com/victor-vrg",
+						"https://linkedin.com/in/victorvrg",
+						"https://www.youtube.com/@Victor-Gualberto",
+						"https://instagram.com/victorresendee_"
+					]
+				},
+				{
+					"@type": "WebSite",
+					"name": "Victor Gualberto",
+					"url": "https://victorgualberto.com.br"
+				}
+			]
+		})} />
 		<script type="text/javascript">
 			(function(c,l,a,r,i,t,y){
 				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

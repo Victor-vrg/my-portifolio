@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import { meta } from "astro:content";
 
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import Layout from "../layouts/Layout.astro";
@@ -22,12 +21,10 @@ const projects = await getCollection("projetos");
 
 ---
 
-<meta 
-  title="Victor Resende Gualberto - Fullstack Developer & Tech Content Creator"
-  description="Portfolio of Victor Resende Gualberto, a passionate Fullstack Developer and content creator focused on sharing technical knowledge through practical projects and tutorials."
-/> 
-
-<Layout>
+<Layout
+  title="Victor Gualberto – Desenvolvedor Fullstack & Criador de Conteúdo Tech"
+  description="Portfólio de Victor Resende Gualberto, Desenvolvedor Fullstack com React, Next.js, Node.js e TypeScript. Projetos práticos, POCs e conteúdo técnico no YouTube."
+>
   <div class="stack gap-20 lg:gap-48">
     <div class="wrapper stack gap-8 lg:gap-20">
       <header class="hero">
